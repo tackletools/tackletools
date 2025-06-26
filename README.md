@@ -96,6 +96,9 @@ src/
 
 🔗 [Visit tackletools.tech](https://tackletools.tech)
 
+## 🌐 Personal Portfolio Website
+🔗 [Visit tackletools.tech](https://amit.tackletools.tech)
+
 ---
 
 ## 🤝 Let's Connect
@@ -103,7 +106,7 @@ src/
 - 📧 amit@tackletools.tech  
 - 🌐 [TackleTools Website](https://tackletools.tech)  
 - 🔗 [LinkedIn](https://linkedin.com/in/amit-gusain)  
-- 📸 [Instagram](https://instagram.com/your_handle)
+- 📸 [Instagram](https://www.instagram.com/tackletools.tech/)
 
 ---
 
