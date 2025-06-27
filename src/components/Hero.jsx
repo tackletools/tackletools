@@ -532,17 +532,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator */}
-      {/* <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 transition-all duration-1500 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="flex flex-col items-center text-gray-300 group cursor-pointer">
-          <span className="text-sm mb-4 font-inter font-medium group-hover:text-white transition-colors duration-300">Scroll to explore more</span>
-          <div className="w-8 h-12 border-2 border-gray-300/50 rounded-full flex items-center justify-center group-hover:border-white/70 transition-colors duration-300">
-            <div className="w-1.5 h-4 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full animate-bounce"></div>
-          </div>
-          <div className="mt-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity duration-300">↓</div>
-        </div>
-      </div> */}
-
       {/* Enhanced Floating UI Elements */}
       <div className="absolute top-1/2 left-8 transform -translate-y-1/2 z-20 hidden lg:block">
         <div className="space-y-6">
