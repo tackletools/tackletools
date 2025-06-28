@@ -103,7 +103,7 @@ const WebDevelopment = () => {
 
                 {/* Description */}
                 <p className="text-base sm:text-lg text-gray-400 mb-8 leading-relaxed max-w-lg">
-                  Complete web development services from concept to deployment. We craft modern, responsive websites and applications that drive results and deliver exceptional user experiences.
+                  Tackle every stage of web development with the right tools—from concept to deployment. We craft modern, responsive websites that drive results and deliver exceptional user experiences.
                 </p>
 
                 {/* Stats - Reduced margins */}

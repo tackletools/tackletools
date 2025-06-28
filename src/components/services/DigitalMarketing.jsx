@@ -140,7 +140,7 @@ const DigitalMarketing = () => {
 
                 {/* Description */}
                 <p className="text-base sm:text-lg text-gray-400 mb-8 leading-relaxed max-w-lg">
-                  Complete digital marketing solutions that drive traffic, generate leads, and boost conversions. From SEO to social media, we craft strategies that deliver measurable results for your business.
+                  Tackle your digital challenges with powerful tools that drive traffic, generate leads, and boost conversions. From SEO to social media, we craft strategies that deliver measurable results for your business.
                 </p>
 
                 {/* Stats */}

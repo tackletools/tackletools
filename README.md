@@ -4,7 +4,7 @@ Welcome to the official repository of **TackleTools**, a fully immersive 3D digi
 
 > “We build digital futures — with depth, detail, and direction.”
 
-![Banner](./banner.png)
+![Banner](.//src/assets/logoVertical.png)
 
 ---
 

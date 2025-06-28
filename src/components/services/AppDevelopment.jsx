@@ -133,7 +133,7 @@ const AppDevelopment = () => {
 
               {/* Description */}
               <p className="text-base sm:text-lg text-gray-400 mb-8 leading-relaxed max-w-lg">
-                Complete app development services from concept to App Store. We build native iOS, Android, and cross-platform applications that engage users and drive business growth.
+                At TackleTools, we use the right tools to tackle complex challenges, building native iOS, Android, and cross-platform applications that engage users and drive business growth.
               </p>
 
               {/* Stats */}
