@@ -7,7 +7,7 @@ import ScrollToTop from './components/ScrollToTop'
 // Import your existing components
 import Home from './pages/Home'
 
-// Import other service components (create these files as needed)
+// Import other service components
 import WebDevelopment from './components/services/WebDevelopment'
 import UIUXDesign from './components/services/UIUXDesign'
 import Database from './components/services/Database'
@@ -19,6 +19,7 @@ import DigitalMarketing from './components/services/DigitalMarketing'
 import OnDemand from './components/services/OnDemand'
 import SensorsCreation from './components/services/SensorsCreation'
 import Multimedia from './components/services/Multimedia'
+import AISolutions from './components/services/AISolutions'
 
 // Import industry components (create these files as needed)
 import Automotive from './components/industries/Automotive'
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="/services/OnDemand" element={<OnDemand />} />
           <Route path="/services/SensorsCreation" element={<SensorsCreation />} />
           <Route path="/services/Multimedia" element={<Multimedia />} />
+          <Route path="/services/AISolutions" element={<AISolutions />} />
 
           {/* Industries Routes */}
           <Route path="/industries/Automotive" element={<Automotive />} />

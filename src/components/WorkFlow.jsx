@@ -241,7 +241,7 @@ const WorkFlow = () => {
             </span>
           </div>
           
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-3">
             <span className="text-white">Accelerate your </span>
             <span className="bg-gradient-to-r from-purple-400 via-orange-400 to-green-400 text-transparent bg-clip-text">
               workflow

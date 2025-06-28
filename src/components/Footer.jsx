@@ -27,27 +27,39 @@ const FloatingOrb = ({ delay = 0, size = "w-2 h-2" }) => (
   />
 );
 
-const ServiceItem = ({ icon: Icon, title }) => {
+const ServiceItem = ({ icon: Icon, title, href = "#" }) => {
   const [isHovered, setIsHovered] = useState(false);
   
+  const handleClick = (e) => {
+    e.preventDefault();
+    // You can replace this with your actual navigation logic
+    // For example: router.push(href) for Next.js or navigate(href) for React Router
+    console.log(`Navigating to: ${href}`);
+    
+    // For demonstration, we'll show an alert
+    alert(`Would navigate to: ${href}`);
+  };
+  
   return (
-    <div
+    <a
+      href={href}
+      onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group cursor-pointer"
+      className="group cursor-pointer block"
     >
       <div className={`
         flex items-center gap-2 px-3 py-2 rounded-lg border backdrop-blur-sm
         transition-all duration-300 text-sm
         ${isHovered 
-          ? 'bg-gradient-to-r from-purple-900/20 to-orange-900/20 border-purple-500/40 text-white' 
+          ? 'bg-gradient-to-r from-purple-900/20 to-orange-900/20 border-purple-500/40 text-white transform scale-105' 
           : 'bg-neutral-900/30 border-neutral-700/40 text-neutral-400 hover:text-neutral-300'
         }
       `}>
         <Icon className={`w-4 h-4 transition-all duration-300 ${isHovered ? 'text-purple-400 scale-110' : ''}`} />
         <span className="font-medium">{title}</span>
       </div>
-    </div>
+    </a>
   );
 };
 
@@ -95,12 +107,12 @@ const Footer = () => {
   };
 
   const services = [
-    { icon: Globe, title: "Website" },
-    { icon: Zap, title: "Application" },
-    { icon: Palette, title: "Multimedia" },
-    { icon: Database, title: "Database" },
-    { icon: Target, title: "Marketing" },
-    { icon: Lock, title: "Security" }
+    { icon: Globe, title: "Website", href: "./components/services/WebDevelopment" },
+    { icon: Zap, title: "Application", href: "./components/services/AppDevelopment" },
+    { icon: Palette, title: "Multimedia", href: "./components/services/Multimedia" },
+    { icon: Database, title: "Database", href: "./components/services/Database" },
+    { icon: Target, title: "Marketing", href: "./components/services/DigitalMarketing" },
+    { icon: Lock, title: "Security", href: "./components/services/CyberSecurity" }
   ];
 
   return (
@@ -173,6 +185,7 @@ const Footer = () => {
                   key={service.title}
                   icon={service.icon}
                   title={service.title}
+                  href={service.href}
                 />
               ))}
             </div>
@@ -190,11 +203,11 @@ const Footer = () => {
                   © {new Date().getFullYear()} tackletools. All rights reserved.
                 </p>
                 <div className="flex items-center gap-3 text-xs">
-                  <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors duration-300">
+                  <a href="/terms" className="text-purple-400 hover:text-purple-300 transition-colors duration-300">
                     Terms
                   </a>
                   <span className="text-neutral-600">|</span>
-                  <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors duration-300">
+                  <a href="/privacy" className="text-purple-400 hover:text-purple-300 transition-colors duration-300">
                     Privacy
                   </a>
                 </div>
@@ -204,26 +217,31 @@ const Footer = () => {
               <div className="flex items-center gap-2">
                 <SocialIcon 
                   icon={Facebook} 
+                  href="https://facebook.com/tackletools"
                   hoverColor="hover:text-blue-500" 
                   platform="Facebook"
                 />
                 <SocialIcon 
                   icon={Instagram} 
+                  href="https://instagram.com/tackletools"
                   hoverColor="hover:text-pink-500" 
                   platform="Instagram"
                 />
                 <SocialIcon 
                   icon={MessageCircle} 
+                  href="https://wa.me/your-number"
                   hoverColor="hover:text-green-500" 
                   platform="WhatsApp"
                 />
                 <SocialIcon 
                   icon={Linkedin} 
+                  href="https://linkedin.com/company/tackletools"
                   hoverColor="hover:text-blue-600" 
                   platform="LinkedIn"
                 />
                 <SocialIcon 
                   icon={Twitter} 
+                  href="https://twitter.com/tackletools"
                   hoverColor="hover:text-sky-400" 
                   platform="Twitter"
                 />

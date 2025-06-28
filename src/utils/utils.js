@@ -1,210 +1,3 @@
-// import { BadgeIndianRupee, CircleHelp, HandHelping } from "lucide-react";
-// import { TriangleAlert } from "lucide-react";
-// import { Users } from "lucide-react";
-// import { Lock } from "lucide-react";
-// import { Dessert } from "lucide-react";
-// import { ShieldPlus } from "lucide-react";
-// import { MessageCircle } from "lucide-react";
-// import { PanelsTopLeft } from "lucide-react";
-// import { Bike } from "lucide-react";
-// import { Forklift } from "lucide-react";
-// import { GraduationCap } from "lucide-react";
-// import { BookCopy } from "lucide-react";
-// import { Building } from "lucide-react";
-// import { Music } from "lucide-react";
-// import { Landmark } from "lucide-react";
-// import { ShoppingCart } from "lucide-react";
-// import { TrainFront } from "lucide-react";
-// import { WalletCards } from "lucide-react";
-// import { Cloudy } from "lucide-react";
-// import { LayoutPanelLeft } from "lucide-react";
-// import { Fingerprint } from "lucide-react";
-// import { Store } from "lucide-react";
-// import { Gamepad2 } from "lucide-react";
-// import { Rocket } from "lucide-react";
-// import { Database } from "lucide-react";
-// import { PenTool } from "lucide-react";
-// import { ShieldCheck } from "lucide-react";
-
-// export const Menus = [
-//   {
-//     name: "Assistance",
-//     subMenuHeading: ["Crafting Innovation", "Design & Marketplace", "Security & Management"],
-//     subMenu: [
-//       {
-//         name: "Web Development",
-//         desc: "Responsive design",
-//         icon: PanelsTopLeft,
-//         link: "pages/WebDev.jsx",
-//       },
-//       {
-//         name: "UI/UX Design",
-//         desc: "User-centered design",
-//         icon: Rocket,
-//       },
-//       {
-//         name: "Database",
-//         desc: "Data management",
-//         icon: Database,
-//       },
-//       {
-//         name: "App Development",
-//         desc: "Mobile solutions",
-//         icon: LayoutPanelLeft,
-//       },
-//       {
-//         name: "E-commerce",
-//         desc: "Digital Marketplace",
-//         icon: ShoppingCart,
-//       },
-//       {
-//         name: "Cyber Security",
-//         desc: "Threat protection",
-//         icon: ShieldCheck,
-//       },
-//       {
-//         name: "Game Development",
-//         desc: "Interactive experiences",
-//         icon: Gamepad2,
-//       },
-//       {
-//         name: "Digital Marketing",
-//         desc: "Online Growth",
-//         icon: Store,
-//       },
-//       {
-//         name: "On-Demand",
-//         desc: "Content Management",
-//         icon: BookCopy,
-//       },
-//       {
-//         name: "Sensors Creation",
-//         desc: "Data detection",
-//         icon: Fingerprint,
-//       },
-//       {
-//         name: "Multimedia",
-//         desc: "Visual storytelling",
-//         icon: PenTool,
-//       },
-//     ],
-//     gridCols: 3,
-//   },
-//   {
-//     name: "Industries",
-//     subMenu: [
-//       {
-//         name: "Automotive",
-//         desc: "Driving Innvotion",
-//         icon: TrainFront,
-//       },
-//       {
-//         name: "Education",
-//         desc: "Empowering Minds",
-//         icon: GraduationCap,
-//       },
-//       {
-//         name: "Real Estate",
-//         desc: "Property Solutions",
-//         icon: Building,
-//       },
-//       {
-//         name: "Logistics",
-//         desc: "Efficient Delivery",
-//         icon: Forklift,
-//       },
-//       {
-//         name: "Healthcare",
-//         desc: "Healing Care",
-//         icon: Bike,
-//       },
-//       {
-//         name: "Entertainment",
-//         desc: "Harmonic Expression",
-//         icon: Music,
-//       },
-//       {
-//         name: "SAAS",
-//         desc: "Cloud Solutions",
-//         icon: Cloudy,
-//       },
-//       {
-//         name: "Retails",
-//         desc: "Seamless Shopping",
-//         icon: WalletCards,
-//       },
-//       {
-//         name: "Coporation",
-//         desc: "Business strategy",
-//         icon: BookCopy,
-//       },
-//       {
-//         name: "E-commerce",
-//         desc: "Digital Marketplace",
-//         icon: ShoppingCart,
-//       },
-//       {
-//         name: "Fintech",
-//         desc: "Financial Innovation",
-//         icon: Landmark,
-//       },
-//       {
-//         name: "On-Demand",
-//         desc: "Instant Access",
-//         icon: BookCopy,
-//       },
-//     ],
-//     gridCols: 3,
-//   },
-//   {
-//     name: "Insights",
-//     subMenuHeading: ["Overview", "Features"],
-//     subMenu: [
-//       {
-//         name: "Enterprise",
-//         desc: "Overview",
-//         icon: ShieldPlus,
-//       },
-//       {
-//         name: "Collaboration",
-//         desc: "Design together",
-//         icon: Users,
-//       },
-//       {
-//         name: "Customers",
-//         desc: "Stories",
-//         icon: Dessert,
-//       },
-//       {
-//         name: "Security",
-//         desc: "Your site secured",
-//         icon: Lock,
-//       },
-//     ],
-//     gridCols: 2,
-//   },
-//   {
-//     name: "Connect",
-//     subMenu: [
-//       {
-//         name: "Help",
-//         desc: "Center",
-//         icon: CircleHelp,
-//       },
-//       {
-//         name: "Community",
-//         desc: "Project help",
-//         icon: MessageCircle,
-//       },
-//       {
-//         name: "Emergency",
-//         desc: "Urgent issues",
-//         icon: TriangleAlert,
-//       },
-//     ],
-//     gridCols: 1,
-//   },
-// ];
 import { BadgeIndianRupee, CircleHelp, HandHelping } from "lucide-react";
 import { TriangleAlert } from "lucide-react";
 import { Users } from "lucide-react";
@@ -232,6 +25,7 @@ import { Rocket } from "lucide-react";
 import { Database } from "lucide-react";
 import { PenTool } from "lucide-react";
 import { ShieldCheck } from "lucide-react";
+import { BrainCircuit } from 'lucide-react';
 
 export const Menus = [
   {
@@ -287,10 +81,10 @@ export const Menus = [
         link: "/services/DigitalMarketing",
       },
       {
-        name: "On-Demand",
-        desc: "Content Management",
-        icon: BookCopy,
-        link: "/services/OnDemand",
+        name: "AI Solutions",
+        desc: "Smart Tools",
+        icon: BrainCircuit,
+        link: "/services/AISolutions",
       },
       {
         name: "Sensors Creation",
@@ -303,6 +97,12 @@ export const Menus = [
         desc: "Visual storytelling",
         icon: PenTool,
         link: "/services/Multimedia",
+      },
+       {
+        name: "On-Demand",
+        desc: "Content Management",
+        icon: BookCopy,
+        link: "/services/OnDemand",
       },
     ],
     gridCols: 3,
