@@ -17,7 +17,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 
-const Emergency = () => {
+const Contact = () => {
   const mountRef = useRef(null);
   const [formData, setFormData] = useState({
     fullName: '',
@@ -147,7 +147,7 @@ const Emergency = () => {
       <div ref={mountRef} className="fixed inset-0 -z-10" />
       
       {/* Hero Section */}
-      <section className="relative pt-24 pb-12 px-4 text-center">
+      <section className="relative py-12 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Get in Touch with <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">TackleTools</span>
@@ -252,23 +252,23 @@ const Emergency = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm">+91 728 909 5248</span>
+                  <span className="text-sm">+1 (555) 123-4567</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm">contact@tackletools.tech</span>
+                  <span className="text-sm">contact@tackletools.com</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <MessageSquare className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm">WhatsApp: +91 728 909 5248</span>
+                  <span className="text-sm">WhatsApp: +1 (555) 123-4567</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm">Aya Nagar, New Delhi - 110047</span>
+                  <span className="text-sm">123 Tech Street, Innovation City, IC 12345</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm">Mon-Fri: 9AM-6PM IST</span>
+                  <span className="text-sm">Mon-Fri: 9AM-6PM PST</span>
                 </div>
               </div>
             </div>
@@ -329,11 +329,24 @@ const Emergency = () => {
             ))}
           </div>
         </div>
+
+        {/* CTA Banner */}
+        <div className="mt-12 text-center bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-8 border border-white/10">
+          <h2 className="text-xl font-semibold mb-3 text-white">
+            Have a project in mind? Let's make it <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">real</span>.
+          </h2>
+          <p className="text-sm text-gray-400 mb-4">
+            Talk to our experts today and transform your ideas into reality.
+          </p>
+          <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded text-sm font-medium hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+            Get Started
+          </button>
+        </div>
       </div>
 
-      {/* Chat Widget - Positioned on bottom left side */}
-      <div className="fixed left-6 bottom-6 z-50">
-        <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+      {/* Chat Widget */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
           <MessageSquare className="w-6 h-6" />
         </button>
       </div>
@@ -341,4 +354,4 @@ const Emergency = () => {
   );
 };
 
-export default Emergency;
+export default Contact;

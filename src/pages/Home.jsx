@@ -1,14 +1,16 @@
 import Hero from "../components/Hero";
-import FeatureSection from "../components/FeatureSection";
+import Features from "../components/Features";
 import WorkFlow from "../components/WorkFlow";
 import Testimonials from "../components/Testimonials";
+import Process from "../components/Process";
 
 const Home = () => {
   return (
     <div>
       <Hero />
       <WorkFlow/>
-      <FeatureSection/>
+      <Process />
+      <Features/>
       <Testimonials/>
     </div>
   );

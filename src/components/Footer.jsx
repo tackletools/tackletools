@@ -217,13 +217,13 @@ const Footer = () => {
               <div className="flex items-center gap-2">
                 <SocialIcon 
                   icon={Facebook} 
-                  href="https://facebook.com/tackletools"
+                  href="https://www.facebook.com/share/19zHYoBuuT/"
                   hoverColor="hover:text-blue-500" 
                   platform="Facebook"
                 />
                 <SocialIcon 
                   icon={Instagram} 
-                  href="https://instagram.com/tackletools"
+                  href="https://www.instagram.com/tackletools.tech/"
                   hoverColor="hover:text-pink-500" 
                   platform="Instagram"
                 />

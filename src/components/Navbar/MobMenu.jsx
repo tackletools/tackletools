@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -12,71 +12,220 @@ export default function MobMenu({ Menus }) {
     setClicked(null);
   };
 
-  const subMenuDrawer = {
-    enter: {
-      height: "auto",
-      overflow: "hidden",
+  // Smooth menu slide animation
+  const menuVariants = {
+    closed: {
+      x: "-100%",
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
     },
-    exit: {
+    open: {
+      x: "0%",
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+        staggerChildren: 0.05,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  // Menu item animation
+  const menuItemVariants = {
+    closed: {
+      opacity: 0,
+      x: -20,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      },
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      },
+    },
+  };
+
+  // Smooth submenu animation
+  const subMenuVariants = {
+    closed: {
       height: 0,
-      overflow: "hidden",
+      opacity: 0,
+      transition: {
+        height: {
+          type: "spring",
+          stiffness: 300,
+          damping: 30,
+        },
+        opacity: {
+          duration: 0.1,
+        },
+      },
     },
+    open: {
+      height: "auto",
+      opacity: 1,
+      transition: {
+        height: {
+          type: "spring",
+          stiffness: 300,
+          damping: 30,
+        },
+        opacity: {
+          duration: 0.2,
+          delay: 0.1,
+        },
+      },
+    },
+  };
+
+  // Hamburger icon animation
+  const hamburgerVariants = {
+    closed: { rotate: 0 },
+    open: { rotate: 90 },
   };
 
   return (
     <div>
-      <button className="lg:hidden z-[999] relative" onClick={toggleDrawer}>
-        {isOpen ? <X /> : <Menu />}
-      </button>
-
-      <motion.div
-        className="fixed left-0 right-0 top-16 overflow-y-auto h-full bg-[#18181A] backdrop-blur text-white p-6 pb-20"
-        initial={{ x: "-100%" }}
-        animate={{ x: isOpen ? "0%" : "-100%" }}
+      <motion.button
+        className="lg:hidden z-[999] relative p-2 hover:bg-white/5 rounded-md transition-colors"
+        onClick={toggleDrawer}
+        whileTap={{ scale: 0.95 }}
+        variants={hamburgerVariants}
+        animate={isOpen ? "open" : "closed"}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
-        <ul>
-          {Menus.map(({ name, subMenu }, i) => {
-            const isClicked = clicked === i;
-            const hasSubMenu = subMenu?.length;
-            return (
-              <li key={name} className="">
-                <span
-                  className="flex-center-between p-4 hover:bg-white/5 rounded-md cursor-pointer relative"
-                  onClick={() => setClicked(isClicked ? null : i)}
-                >
-                  {name}
-                  {hasSubMenu && (
-                    <ChevronDown
-                      className={`ml-auto ${isClicked && "rotate-180"} `}
-                    />
-                  )}
-                </span>
-                {hasSubMenu && (
-                  <motion.ul
-                    initial="exit"
-                    animate={isClicked ? "enter" : "exit"}
-                    variants={subMenuDrawer}
-                    className="ml-5"
-                  >
-                    {subMenu.map(({ name, icon: Icon, link }) => (
-                      <li key={name} className="p-2 hover:bg-white/5 rounded-md">
-                        <Link 
-                          to={link} 
-                          className="flex-center gap-x-2 no-underline text-inherit hover:no-underline w-full"
-                          onClick={toggleDrawer}
-                        >
-                          <Icon size={17} />
-                          {name}
-                        </Link>
-                      </li>
-                    ))}
-                  </motion.ul>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </motion.div>
+        <AnimatePresence mode="wait">
+          {isOpen ? (
+            <motion.div
+              key="close"
+              initial={{ opacity: 0, rotate: -90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              exit={{ opacity: 0, rotate: 90 }}
+              transition={{ duration: 0.2 }}
+            >
+              <X />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="menu"
+              initial={{ opacity: 0, rotate: 90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              exit={{ opacity: 0, rotate: -90 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Menu />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[998]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={toggleDrawer}
+            />
+
+            {/* Menu */}
+            <motion.div
+              className="fixed left-0 right-0 top-16 overflow-y-auto h-full bg-[#18181A]/95 backdrop-blur-xl text-white p-6 pb-20 z-[999]"
+              variants={menuVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+            >
+              <motion.ul variants={menuItemVariants}>
+                {Menus.map(({ name, subMenu }, i) => {
+                  const isClicked = clicked === i;
+                  const hasSubMenu = subMenu?.length;
+                  return (
+                    <motion.li
+                      key={name}
+                      variants={menuItemVariants}
+                      className="mb-2"
+                    >
+                      <motion.span
+                        className="flex-center-between p-4 hover:bg-white/10 rounded-lg cursor-pointer relative transition-all duration-200"
+                        onClick={() => setClicked(isClicked ? null : i)}
+                        whileTap={{ scale: 0.98 }}
+                        whileHover={{ x: 4 }}
+                      >
+                        <span className="font-medium">{name}</span>
+                        {hasSubMenu && (
+                          <motion.div
+                            animate={{ rotate: isClicked ? 180 : 0 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 300,
+                              damping: 30,
+                            }}
+                          >
+                            <ChevronDown className="ml-auto" />
+                          </motion.div>
+                        )}
+                      </motion.span>
+                      
+                      <AnimatePresence>
+                        {hasSubMenu && isClicked && (
+                          <motion.ul
+                            variants={subMenuVariants}
+                            initial="closed"
+                            animate="open"
+                            exit="closed"
+                            className="ml-5 overflow-hidden"
+                          >
+                            {subMenu.map(({ name, icon: Icon, link }, index) => (
+                              <motion.li
+                                key={name}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ 
+                                  opacity: 1, 
+                                  x: 0,
+                                  transition: { delay: index * 0.1 }
+                                }}
+                                exit={{ opacity: 0, x: -10 }}
+                                className="p-2 hover:bg-white/5 rounded-md transition-colors duration-200"
+                              >
+                                <Link
+                                  to={link}
+                                  className="flex-center gap-x-3 no-underline text-inherit hover:no-underline w-full text-gray-300 hover:text-white transition-colors duration-200"
+                                  onClick={toggleDrawer}
+                                >
+                                  <Icon size={17} />
+                                  <span>{name}</span>
+                                </Link>
+                              </motion.li>
+                            ))}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
+                    </motion.li>
+                  );
+                })}
+              </motion.ul>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

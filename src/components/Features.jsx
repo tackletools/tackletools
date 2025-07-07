@@ -117,7 +117,7 @@ const FeatureCard = ({ feature, index }) => {
   );
 };
 
-const FeatureSection = () => {
+const Features = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -207,4 +207,4 @@ const FeatureSection = () => {
   );
 };
 
-export default FeatureSection;
+export default Features;

@@ -12,13 +12,16 @@ import {
   MessageCircle
 } from "lucide-react";
 import Amit from "../assets/Amit.jpg";
+import Pawan from "../assets/pss.jpg";
+import Komal from "../assets/komal.jpg";
+import Nikita from "../assets/Nikita.jpg";
 
 const persons = [
   {
     name: "Amit Gusain",
     role: "Lead Developer",
     company: "TackleTools Inc.",
-    location: "San Francisco, CA",
+    location: "New Delhi, India",
     img: Amit,
     testimonial: "This platform revolutionized our development workflow. The AI-powered features saved us countless hours.",
     rating: 5,
@@ -26,10 +29,10 @@ const persons = [
   },
   {
     name: "Pawan Singh Shah",
-    role: "CTO",
-    company: "StartupXYZ",
-    location: "New York, NY",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=face",
+    role: "Lead Developer",
+    company: "TackleTools Inc.",
+    location: "New Delhi, India",
+    img: Pawan,
     testimonial: "The security features are outstanding. We've deployed mission-critical applications with complete confidence.",
     rating: 5,
     tags: ["Security", "Enterprise"]
@@ -45,11 +48,11 @@ const persons = [
     tags: ["Collaboration", "Management"]
   },
   {
-    name: "David Park",
+    name: "Komal Pandey",
     role: "Senior Engineer",
     company: "DataFlow Systems",
     location: "Seattle, WA",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=600&fit=crop&crop=face",
+    img: Komal,
     testimonial: "Performance optimization features are incredible. Our applications run 3x faster with minimal changes.",
     rating: 5,
     tags: ["Performance", "Optimization"]
@@ -59,7 +62,7 @@ const persons = [
     role: "DevOps Lead",
     company: "CloudNative Co.",
     location: "Boston, MA",
-    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=face",
+    img: Nikita,
     testimonial: "Deployment automation saved our team weeks of manual work. The platform adapts perfectly to our needs.",
     rating: 5,
     tags: ["DevOps", "Automation"]
