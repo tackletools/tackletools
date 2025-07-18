@@ -8,25 +8,94 @@ const Hero = () => {
   const frameRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+
+  const slides = [
+    {
+      title: "MODERN",
+      subtitle: "INTERFACE",
+      focusWord: "MODERN",
+      description: "Experience the future of digital interaction through our advanced 3D environment designed for next-generation applications.",
+      status: "SYSTEM ONLINE",
+      stats: [
+        { label: 'RESPONSE TIME', value: '0.08ms', color: 'text-blue-400' },
+        { label: 'ACCURACY', value: '99.7%', color: 'text-purple-400' },
+        { label: 'UPTIME', value: '99.9%', color: 'text-cyan-400' },
+      ]
+    },
+    {
+      title: "REAL-TIME",
+      subtitle: "ANALYTICS",
+      focusWord: "REAL-TIME",
+      description: "Real-time data visualization and insights powered by advanced algorithms and machine learning capabilities.",
+      status: "DATA STREAMING",
+      stats: [
+        { label: 'PROCESSED', value: '2.4M', color: 'text-orange-400' },
+        { label: 'EFFICIENCY', value: '94.2%', color: 'text-pink-400' },
+        { label: 'LATENCY', value: '12ms', color: 'text-yellow-400' },
+      ]
+    },
+    {
+      title: "ADVANCED",
+      subtitle: "SECURITY",
+      focusWord: "ADVANCED",
+      description: "Enterprise-grade security measures with end-to-end encryption and advanced threat detection systems.",
+      status: "SECURE CONNECTION",
+      stats: [
+        { label: 'THREATS BLOCKED', value: '1,247', color: 'text-red-400' },
+        { label: 'ENCRYPTION', value: 'AES-256', color: 'text-indigo-400' },
+        { label: 'SECURITY SCORE', value: '98.5%', color: 'text-emerald-400' },
+      ]
+    },
+    {
+      title: "SCALABLE",
+      subtitle: "CLOUD",
+      focusWord: "SCALABLE",
+      description: "Scalable cloud architecture with global distribution and automatic failover capabilities.",
+      status: "CLOUD ACTIVE",
+      stats: [
+        { label: 'NODES ACTIVE', value: '847', color: 'text-teal-400' },
+        { label: 'BANDWIDTH', value: '10GB/s', color: 'text-violet-400' },
+        { label: 'AVAILABILITY', value: '99.99%', color: 'text-lime-400' },
+      ]
+    }
+  ];
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (!isAutoPlay) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoPlay, slides.length]);
+
+  const handleSlideChange = (index) => {
+    setCurrentSlide(index);
+    setIsAutoPlay(false); // Stop autoplay when user manually changes slide
+    // Resume autoplay after 8 seconds
+    setTimeout(() => setIsAutoPlay(true), 8000);
+  };
 
   const handleMouseMove = useCallback((event) => {
     const x = (event.clientX / window.innerWidth) * 2 - 1;
     const y = -(event.clientY / window.innerHeight) * 2 + 1;
     mouseRef.current = { x, y };
-    setMousePosition({ x: event.clientX, y: event.clientY });
   }, []);
 
   useEffect(() => {
     if (!mountRef.current) return;
 
-    // Scene setup with darker theme
+    // Scene setup
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x000000, 10, 50);
+    scene.fog = new THREE.Fog(0x000000, 30, 60);
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(
-      75,
+      50,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
@@ -39,218 +108,85 @@ const Hero = () => {
     rendererRef.current = renderer;
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 1); // Pure black background
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setClearColor(0x000000, 1);
+    renderer.shadowMap.enabled = false;
     mountRef.current.appendChild(renderer.domElement);
 
-    // Create more diverse and attractive geometries
-    const geometries = [
-      new THREE.IcosahedronGeometry(0.8, 1),
-      new THREE.DodecahedronGeometry(0.7),
-      new THREE.TorusGeometry(0.6, 0.2, 16, 100),
-      new THREE.TorusKnotGeometry(0.5, 0.2, 100, 16),
-      new THREE.OctahedronGeometry(0.8),
-      new THREE.TetrahedronGeometry(0.9),
-      new THREE.SphereGeometry(0.6, 32, 32),
-      new THREE.IcosahedronGeometry(1.0, 0),
-      new THREE.CylinderGeometry(0.3, 0.3, 1.5, 8),
-    ];
-
-    // Enhanced materials with darker theme colors
-    const createMaterials = () => [
-      new THREE.MeshPhongMaterial({
-        color: 0x6366f1, // Indigo
-        transparent: true,
-        opacity: 0.8,
-        shininess: 100,
-        emissive: new THREE.Color(0x6366f1).multiplyScalar(0.2),
-      }),
-      new THREE.MeshPhongMaterial({
-        color: 0xe879f9, // Fuchsia
-        transparent: true,
-        opacity: 0.8,
-        shininess: 100,
-        emissive: new THREE.Color(0xe879f9).multiplyScalar(0.2),
-      }),
-      new THREE.MeshPhongMaterial({
-        color: 0x06b6d4, // Cyan
-        transparent: true,
-        opacity: 0.7,
-        shininess: 150,
-        emissive: new THREE.Color(0x06b6d4).multiplyScalar(0.25),
-      }),
-      new THREE.MeshPhongMaterial({
-        color: 0xf59e0b, // Amber
-        transparent: true,
-        opacity: 0.75,
-        shininess: 120,
-        emissive: new THREE.Color(0xf59e0b).multiplyScalar(0.2),
-      }),
-      // Wireframe materials
-      new THREE.MeshBasicMaterial({
-        color: 0x8b5cf6, // Violet
-        wireframe: true,
-        transparent: true,
-        opacity: 0.5,
-      }),
-      new THREE.MeshBasicMaterial({
-        color: 0xec4899, // Pink
-        wireframe: true,
-        transparent: true,
-        opacity: 0.5,
-      }),
-    ];
-
-    const materials = createMaterials();
-    const meshes = [];
-
-    // Create main floating objects
-    for (let i = 0; i < 20; i++) {
-      const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-      const material = materials[Math.floor(Math.random() * materials.length)];
-      const mesh = new THREE.Mesh(geometry, material);
-
-      mesh.position.x = (Math.random() - 0.5) * 35;
-      mesh.position.y = (Math.random() - 0.5) * 25;
-      mesh.position.z = (Math.random() - 0.5) * 25;
-
-      mesh.rotation.x = Math.random() * Math.PI * 2;
-      mesh.rotation.y = Math.random() * Math.PI * 2;
-      mesh.rotation.z = Math.random() * Math.PI * 2;
-
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
-
-      mesh.userData = {
-        initialX: mesh.position.x,
-        initialY: mesh.position.y,
-        initialZ: mesh.position.z,
-        speedX: (Math.random() - 0.5) * 0.02,
-        speedY: (Math.random() - 0.5) * 0.015,
-        speedZ: (Math.random() - 0.5) * 0.02,
-        rotSpeedX: (Math.random() - 0.5) * 0.06,
-        rotSpeedY: (Math.random() - 0.5) * 0.05,
-        rotSpeedZ: (Math.random() - 0.5) * 0.04,
-        scale: 0.4 + Math.random() * 0.6,
-        pulseSpeed: 0.5 + Math.random() * 1.5,
-        mouseInfluence: 0.1 + Math.random() * 0.2,
-      };
-
-      mesh.scale.setScalar(mesh.userData.scale);
-      scene.add(mesh);
-      meshes.push(mesh);
-    }
-
-    // Create particle system
-    const particleGeometry = new THREE.BufferGeometry();
-    const particleCount = 150;
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-
-    for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 40;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
-
-      const color = new THREE.Color();
-      color.setHSL(Math.random() * 0.4 + 0.5, 0.7, 0.5);
-      colors[i * 3] = color.r;
-      colors[i * 3 + 1] = color.g;
-      colors[i * 3 + 2] = color.b;
-    }
-
-    particleGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    particleGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-
-    const particleMaterial = new THREE.PointsMaterial({
-      size: 0.08,
-      vertexColors: true,
+    // Create minimal floating particles
+    const particleGeometry = new THREE.SphereGeometry(0.02, 8, 8);
+    const particleMaterial = new THREE.MeshBasicMaterial({
+      color: 0x666666,
       transparent: true,
-      opacity: 0.6,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.4,
     });
 
-    const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
-    scene.add(particleSystem);
+    const particles = [];
+    const particleCount = 50;
 
-    // Dark theme lighting setup
-    const ambientLight = new THREE.AmbientLight(0x222222, 0.3);
+    for (let i = 0; i < particleCount; i++) {
+      const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+      particle.position.set(
+        (Math.random() - 0.5) * 40,
+        (Math.random() - 0.5) * 40,
+        (Math.random() - 0.5) * 40
+      );
+      
+      particle.userData = {
+        velocity: {
+          x: (Math.random() - 0.5) * 0.005,
+          y: (Math.random() - 0.5) * 0.005,
+          z: (Math.random() - 0.5) * 0.005,
+        },
+        originalOpacity: 0.2 + Math.random() * 0.3,
+      };
+      
+      scene.add(particle);
+      particles.push(particle);
+    }
+
+    // Minimal lighting
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0x6366f1, 1);
-    directionalLight.position.set(10, 10, 5);
-    directionalLight.castShadow = true;
-    directionalLight.shadow.mapSize.width = 2048;
-    directionalLight.shadow.mapSize.height = 2048;
+    const directionalLight = new THREE.DirectionalLight(0x808080, 0.3);
+    directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
-    const pointLight1 = new THREE.PointLight(0xe879f9, 1.2, 25);
-    pointLight1.position.set(-15, 10, -10);
-    scene.add(pointLight1);
-
-    const pointLight2 = new THREE.PointLight(0x06b6d4, 1, 20);
-    pointLight2.position.set(15, -10, 10);
-    scene.add(pointLight2);
-
-    camera.position.set(0, 0, 18);
+    camera.position.set(0, 0, 15);
 
     let time = 0;
 
     const animate = () => {
       frameRef.current = requestAnimationFrame(animate);
-      time += 0.008;
+      time += 0.005;
 
       const mouseInfluenceX = mouseRef.current.x * 2;
       const mouseInfluenceY = mouseRef.current.y * 2;
 
-      meshes.forEach((mesh, index) => {
-        mesh.position.x += mesh.userData.speedX + Math.sin(time + index * 0.5) * 0.008;
-        mesh.position.y += mesh.userData.speedY + Math.cos(time + index * 0.3) * 0.006;
-        mesh.position.z += mesh.userData.speedZ + Math.sin(time * 0.7 + index) * 0.005;
+      particles.forEach((particle, index) => {
+        // Gentle floating motion
+        particle.position.x += particle.userData.velocity.x;
+        particle.position.y += particle.userData.velocity.y;
+        particle.position.z += particle.userData.velocity.z;
 
-        const distanceToMouse = Math.sqrt(
-          Math.pow(mesh.position.x - mouseInfluenceX * 8, 2) +
-          Math.pow(mesh.position.y - mouseInfluenceY * 8, 2)
+        // Bounce off boundaries
+        if (Math.abs(particle.position.x) > 20) particle.userData.velocity.x *= -1;
+        if (Math.abs(particle.position.y) > 20) particle.userData.velocity.y *= -1;
+        if (Math.abs(particle.position.z) > 20) particle.userData.velocity.z *= -1;
+
+        // Subtle mouse interaction
+        const distance = Math.sqrt(
+          Math.pow(particle.position.x - mouseInfluenceX, 2) +
+          Math.pow(particle.position.y - mouseInfluenceY, 2)
         );
-
-        if (distanceToMouse < 6) {
-          const influence = (6 - distanceToMouse) / 6;
-          mesh.position.x += (mouseInfluenceX * 1.5 - mesh.position.x * 0.1) * influence * mesh.userData.mouseInfluence;
-          mesh.position.y += (mouseInfluenceY * 1.5 - mesh.position.y * 0.1) * influence * mesh.userData.mouseInfluence;
-        }
-
-        mesh.rotation.x += mesh.userData.rotSpeedX + Math.sin(time) * 0.008;
-        mesh.rotation.y += mesh.userData.rotSpeedY + Math.cos(time * 0.8) * 0.006;
-        mesh.rotation.z += mesh.userData.rotSpeedZ;
-
-        const pulseScale = mesh.userData.scale + Math.sin(time * mesh.userData.pulseSpeed) * 0.08;
-        mesh.scale.setScalar(pulseScale);
-
-        if (mesh.material.transparent) {
-          const baseOpacity = 0.7;
-          mesh.material.opacity = baseOpacity + Math.sin(time * 1.5 + index) * 0.15;
-        }
-
-        if (Math.abs(mesh.position.x) > 20) mesh.userData.speedX *= -0.8;
-        if (Math.abs(mesh.position.y) > 15) mesh.userData.speedY *= -0.8;
-        if (Math.abs(mesh.position.z) > 15) mesh.userData.speedZ *= -0.8;
+        
+        const influence = Math.max(0, 1 - distance / 10);
+        particle.material.opacity = particle.userData.originalOpacity + influence * 0.3;
       });
 
-      const positions = particleSystem.geometry.attributes.position.array;
-      for (let i = 0; i < positions.length; i += 3) {
-        positions[i + 1] += Math.sin(time + positions[i] * 0.01) * 0.015;
-        positions[i] += Math.cos(time + positions[i + 1] * 0.01) * 0.008;
-      }
-      particleSystem.geometry.attributes.position.needsUpdate = true;
-
-      pointLight1.position.x = Math.sin(time) * 12;
-      pointLight1.position.z = Math.cos(time) * 12;
-      pointLight2.position.x = Math.cos(time * 0.7) * 12;
-      pointLight2.position.z = Math.sin(time * 0.7) * 12;
-
-      camera.position.x = mouseInfluenceX * 0.3;
-      camera.position.y = mouseInfluenceY * 0.2;
+      // Very subtle camera movement
+      camera.position.x = mouseInfluenceX * 0.02;
+      camera.position.y = mouseInfluenceY * 0.02;
       camera.lookAt(0, 0, 0);
 
       renderer.render(scene, camera);
@@ -267,7 +203,7 @@ const Hero = () => {
     window.addEventListener("mousemove", handleMouseMove);
     animate();
 
-    setTimeout(() => setIsLoaded(true), 300);
+    setTimeout(() => setIsLoaded(true), 500);
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -284,211 +220,181 @@ const Hero = () => {
     };
   }, [handleMouseMove]);
 
+  const currentSlideData = slides[currentSlide];
+
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black">
       {/* 3D Canvas */}
       <div ref={mountRef} className="absolute inset-0 z-0" />
 
-      {/* Dark gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/10 via-transparent to-gray-900/10 z-10" />
+      {/* Subtle grid overlay */}
+      <div className="absolute inset-0 opacity-5 z-10" 
+           style={{
+             backgroundImage: `
+               linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+               linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+             `,
+             backgroundSize: '60px 60px'
+           }} />
 
-      {/* Subtle animated background patterns */}
-      <div className="absolute inset-0 z-5 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-radial from-indigo-500/30 to-transparent rounded-full animate-pulse" />
-        <div
-          className="absolute bottom-1/4 right-1/4 w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-gradient-radial from-cyan-500/30 to-transparent rounded-full animate-pulse"
-          style={{ animationDelay: "1s" }}
-        />
-        <div
-          className="absolute top-1/2 right-1/3 w-48 h-48 sm:w-60 sm:h-60 lg:w-64 lg:h-64 bg-gradient-radial from-fuchsia-500/30 to-transparent rounded-full animate-pulse"
-          style={{ animationDelay: "2s" }}
-        />
-      </div>
-    
-      {/* Mouse follower effect - Hidden on small screens */}
-      <div
-        className="fixed pointer-events-none z-50 hidden lg:block"
-        style={{
-          left: mousePosition.x,
-          top: mousePosition.y,
-          transform: `translate(-50%, -50%) scale(${isLoaded ? 1 : 0})`,
-        }}
-      >
-        {/* Main cursor */}
-        <div className="relative">
-          <div className="absolute w-6 h-6 bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-400 rounded-full animate-spin mix-blend-screen"></div>
-          <div className="absolute w-4 h-4 top-1 left-1 bg-gradient-to-r from-white to-cyan-200 rounded-full animate-pulse"></div>
-          <div className="absolute w-8 h-8 -top-1 -left-1 border border-cyan-400/50 rounded-full animate-ping"></div>
+      {/* Content Layout */}
+      <div className="relative z-20 h-full flex flex-col lg:flex-row">
+        
+        {/* Left Side - Navigation */}
+        <div className="lg:w-20 w-full h-16 lg:h-full flex lg:flex-col flex-row items-center justify-center border-b lg:border-b-0 lg:border-r border-gray-800 order-2 lg:order-1">
+          <div className="flex lg:flex-col flex-row lg:space-y-6 space-x-6 lg:space-x-0">
+            {['01', '02', '03', '04'].map((num, index) => (
+              <button
+                key={num}
+                onClick={() => handleSlideChange(index)}
+                className={`w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 transition-all duration-300 flex items-center justify-center text-xs font-mono ${
+                  index === currentSlide
+                    ? 'border-white bg-white text-black' 
+                    : 'border-gray-600 text-gray-400 hover:border-gray-400 hover:text-gray-300'
+                }`}
+              >
+                {num}
+              </button>
+            ))}
+          </div>
+          
+          {/* Autoplay indicator */}
+          <div className="hidden lg:block absolute bottom-4 left-1/2 transform -translate-x-1/2">
+            <div className={`w-2 h-2 rounded-full ${isAutoPlay ? 'bg-white animate-pulse' : 'bg-gray-600'}`}></div>
+          </div>
         </div>
-        
-        {/* Orbital rings */}
-        <div className="absolute w-12 h-12 -top-3 -left-3 border border-indigo-400/30 rounded-full animate-spin" style={{ animationDuration: '3s' }}></div>
-        <div className="absolute w-16 h-16 -top-5 -left-5 border border-fuchsia-400/20 rounded-full animate-spin" style={{ animationDuration: '4s', animationDirection: 'reverse' }}></div>
-        
-        {/* Particle trails */}
-        <div className="absolute w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ top: '-20px', left: '10px', animationDelay: '0.2s' }}></div>
-        <div className="absolute w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style={{ top: '20px', left: '-15px', animationDelay: '0.4s' }}></div>
-        <div className="absolute w-1 h-1 bg-fuchsia-400 rounded-full animate-bounce" style={{ top: '5px', left: '25px', animationDelay: '0.6s' }}></div>
-      </div>
 
-      {/* Content - Added top padding for navbar */}
-      <div className="relative z-20 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24">
-        <div className="max-w-7xl mx-auto text-center">
-          {/* Main Heading */}
-          <div
-            className={`transition-all duration-1500 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-            }`}
-          >
-            <div className="relative">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-inter font-black tracking-tight mb-6 sm:mb-8 relative">
-                <span className="block relative mb-2">
-                  <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-teal-400 text-transparent bg-clip-text animate-pulse relative z-10 drop-shadow-2xl">
-                    BUILDING A{" "}
-                    <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-purple-500 text-transparent bg-clip-text">
-                      3D
-                    </span>
-                    <span className="bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 text-transparent bg-clip-text">
-                      {" "}FUTURE
-                    </span>
+        {/* Center - Main Content */}
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 lg:py-0 order-1 lg:order-2">
+          <div className="max-w-2xl w-full text-center lg:text-left">
+            
+            {/* Status Badge */}
+            <div
+              className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-sm font-mono mb-6 lg:mb-8 transition-all duration-1000 ${
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <span className="text-xs sm:text-sm">{currentSlideData.status}</span>
+            </div>
+
+            {/* Main Title */}
+            <div
+              className={`transition-all duration-1000 delay-200 ${
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 lg:mb-6 leading-tight">
+                <span className="block">
+                  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 text-transparent bg-clip-text font-extrabold animate-pulse">
+                    {currentSlideData.focusWord}
                   </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-300 to-teal-400 text-transparent bg-clip-text blur-xl opacity-50 animate-pulse">
-                    BUILDING A{" "}
-                    <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold bg-gradient-to-r from-indigo-400 via-fuchsia-500 to-purple-500 text-transparent bg-clip-text">
-                      3D
+                  {currentSlideData.title !== currentSlideData.focusWord && (
+                    <span className="ml-2 text-gray-300">
+                      {currentSlideData.title.replace(currentSlideData.focusWord, '').trim()}
                     </span>
-                    <span className="bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 text-transparent bg-clip-text">
-                      {" "}FUTURE
-                    </span>
-                  </span>
+                  )}
                 </span>
-                <span className="block text-gray-100 mt-4 sm:mt-6 mb-3 sm:mb-4 relative">
-                  <span className="relative z-10 tracking-wider">FOR YOUR</span>
-                  <span className="absolute inset-0 text-gray-100 blur-sm opacity-40 tracking-wider">
-                    FOR YOUR
-                  </span>
-                </span>
-                <span className="block relative">
-                  <span className="bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 text-transparent bg-clip-text relative z-10 animate-pulse drop-shadow-2xl">
-                    DIGITAL SUCCESS
-                  </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 text-transparent bg-clip-text blur-xl opacity-60 animate-pulse">
-                    DIGITAL SUCCESS
-                  </span>
+                <span className="block bg-gradient-to-r from-white to-gray-400 text-transparent bg-clip-text">
+                  {currentSlideData.subtitle}
                 </span>
               </h1>
             </div>
-          </div>
 
-          {/* Subtitle */}
-          <div
-            className={`transition-all duration-1500 delay-300 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-            }`}
-          >
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-300 max-w-5xl mx-auto mb-8 sm:mb-10 lg:mb-12 leading-relaxed font-inter font-light">
-              <span className="bg-gradient-to-r from-gray-300 to-gray-100 text-transparent bg-clip-text">
-                Crafting Tomorrow's Tech, Today — with TackleTools
-              </span>
-              <br />
-              <span className="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-                At tackletools, we craft innovative solutions to bring your ideas to life with depth, detail, and direction. Let's elevate your digital journey.
-              </span>
-            </p>
-          </div>
+            {/* Description */}
+            <div
+              className={`transition-all duration-1000 delay-400 ${
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              <p className="text-base sm:text-lg lg:text-xl text-gray-400 mb-6 lg:mb-8 leading-relaxed font-light px-4 sm:px-0">
+                {currentSlideData.description}
+              </p>
+            </div>
 
-          {/* CTA Buttons*/}
-          <div
-            className={`transition-all duration-1500 delay-500 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-            }`}
-          >
-            <div className="flex items-center justify-center gap-3 sm:gap-4">
-              <button className="group relative px-4 py-2 bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-cyan-600 rounded-lg font-medium text-white text-sm font-inter transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30 transform-gpu">
-                <span className="relative z-10 flex items-center justify-center gap-1.5">
-                  <svg className="w-3.5 h-3.5 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            {/* Action Buttons*/}
+            <div
+              className={`flex flex-col sm:flex-row lg:flex-row gap-4 justify-center lg:justify-start transition-all duration-1000 delay-600 ${
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              <button className="group px-6 lg:px-8 py-3 lg:py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/25">
+                <span className="flex items-center justify-center gap-2">
+                  INITIALIZE
+                  <svg className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Launch Experience
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-cyan-400 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10"></div>
               </button>
-
-              <button className="group px-4 py-2 border border-transparent bg-gradient-to-r from-cyan-400 to-indigo-400 rounded-lg font-medium text-sm font-inter transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/30 relative overflow-hidden">
-                <span className="absolute inset-0 bg-black m-[1px] rounded-[7px]"></span>
-                <span className="relative z-10 flex items-center justify-center gap-1.5 bg-gradient-to-r from-cyan-400 to-indigo-400 text-transparent bg-clip-text">
-                  <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M19 10a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Explore Features
-                </span>
+              
+              <button className="px-6 lg:px-8 py-3 lg:py-4 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:border-white hover:text-white transition-all duration-300 hover:scale-105">
+                EXPLORE
               </button>
             </div>
-          </div>
 
-          {/* Feature Pills */}
-          <div
-            className={`transition-all duration-1500 delay-700 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-            }`}
-          >
-            <div className="flex items-center justify-center flex-wrap gap-2 sm:gap-3 mt-8 sm:mt-10 lg:mt-12 max-w-4xl mx-auto">
-              {[
-                { icon: "🎮", text: "Interactive 3D" },
-                { icon: "⚡", text: "Real-time" },
-                { icon: "🎨", text: "Immersive" },
-                { icon: "🚀", text: "WebGL" },
-                { icon: "🔮", text: "Future Ready" },
-                { icon: "💫", text: "Mind Blowing" },
-              ].map((feature, index) => (
-                <div
-                  key={index}
-                  className="group px-3 sm:px-4 py-1.5 sm:py-2 backdrop-blur bg-white/[0.03] rounded-full text-gray-300 text-xs sm:text-sm font-medium font-inter border border-white/10 hover:bg-white/[0.06] hover:border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/10"
-                >
-                  <span className="flex items-center gap-1.5 sm:gap-2">
-                    <span className="text-sm sm:text-base group-hover:scale-125 transition-transform duration-300">
-                      {feature.icon}
-                    </span>
-                    <span className="whitespace-nowrap">{feature.text}</span>
-                  </span>
+          </div>
+        </div>
+
+        {/* Right Side - Stats */}
+        <div className="w-full lg:w-80 border-t lg:border-t-0 lg:border-l border-gray-800 p-4 sm:p-6 lg:p-8 flex flex-col justify-center order-3">
+          <div className="space-y-6 lg:space-y-8">
+            
+            {/* Stats */}
+            <div
+              className={`transition-all duration-1000 delay-800 ${
+                isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+              }`}
+            >
+              <div className="grid grid-cols-3 lg:grid-cols-1 gap-4 lg:gap-6">
+                {currentSlideData.stats.map((stat, index) => (
+                  <div key={index} className="flex flex-col lg:flex-row lg:justify-between lg:items-center text-center lg:text-left">
+                    <span className="text-gray-500 text-xs sm:text-sm font-mono mb-1 lg:mb-0">{stat.label}</span>
+                    <span className={`text-lg lg:text-xl font-bold ${stat.color}`}>{stat.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Connection Status */}
+            <div
+              className={`transition-all duration-1000 delay-1000 ${
+                isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+              }`}
+            >
+              <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                  <span className="text-white text-sm font-mono">CONNECTED</span>
                 </div>
-              ))}
+                <p className="text-gray-400 text-sm">
+                  All systems operational. Ready for deployment.
+                </p>
+              </div>
             </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      {/* Bottom Status Bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-10 sm:h-12 bg-black/80 backdrop-blur-sm border-t border-gray-800 flex items-center justify-between px-4 sm:px-6 z-30">
+        <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-mono text-gray-400">
+          <span>tackletools</span>
+          <span className="hidden sm:inline">•</span>
+          <span className="hidden sm:inline">TackleTools Neural Interface</span>
+        </div>
+        <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-mono text-gray-400">
+          <span className="hidden sm:inline">UTC</span>
+          <span>{new Date().toLocaleTimeString()}</span>
+          <div className="flex items-center gap-1">
+            <div className="w-1 h-1 bg-white rounded-full"></div>
+            <div className="w-1 h-1 bg-white rounded-full"></div>
+            <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
           </div>
         </div>
       </div>
 
-      {/* Side Navigation Dots */}
-      <div className="absolute top-1/2 left-4 sm:left-6 lg:left-8 transform -translate-y-1/2 z-20 hidden lg:block">
-        <div className="space-y-4 sm:space-y-6">
-          {[1, 2, 3, 4].map((i) => (
-            <div
-              key={i}
-              className={`w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-cyan-400 to-indigo-400 rounded-full animate-pulse hover:scale-150 transition-transform duration-300 cursor-pointer`}
-              style={{ animationDelay: `${i * 0.5}s` }}
-            ></div>
-          ))}
-        </div>
-      </div>
-
-      <div className="absolute top-1/2 right-4 sm:right-6 lg:right-8 transform -translate-y-1/2 z-20 hidden lg:block">
-        <div className="space-y-4 sm:space-y-6">
-          {[1, 2, 3, 4].map((i) => (
-            <div
-              key={i}
-              className={`w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-orange-400 to-fuchsia-400 rounded-full animate-pulse hover:scale-150 transition-transform duration-300 cursor-pointer`}
-              style={{ animationDelay: `${i * 0.7}s` }}
-            ></div>
-          ))}
-        </div>
-      </div>
-
-      {/* Corner decorative elements */}
-      <div className="absolute top-4 sm:top-6 lg:top-8 left-4 sm:left-6 lg:left-8 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 border-l-2 border-t-2 border-cyan-400/30 opacity-50"></div>
-      <div className="absolute top-4 sm:top-6 lg:top-8 right-4 sm:right-6 lg:right-8 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 border-r-2 border-t-2 border-indigo-400/30 opacity-50"></div>
-      <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 sm:left-6 lg:left-8 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 border-l-2 border-b-2 border-fuchsia-400/30 opacity-50"></div>
-      <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 right-4 sm:right-6 lg:right-8 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 border-r-2 border-b-2 border-orange-400/30 opacity-50"></div>
     </div>
   );
 };

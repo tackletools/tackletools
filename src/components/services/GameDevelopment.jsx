@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { HelmetTags } from '../../utils/HelmetMetaTags.jsx';
 
 const GameDevelopment = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -44,6 +45,8 @@ const GameDevelopment = () => {
   }, []);
 
   return (
+    <>
+      {HelmetTags.GameDevelopment}
     <section
       ref={heroRef}
       className="relative h-screen bg-black overflow-hidden"
@@ -540,6 +543,7 @@ const GameDevelopment = () => {
         }
       `}</style>
     </section>
+    </>
   );
 };
 

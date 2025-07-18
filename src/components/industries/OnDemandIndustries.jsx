@@ -12,24 +12,33 @@ import {
   Brain,
   TrendingUp,
   ChevronRight,
-  Film,
+  Smartphone,
   CheckCircle,
   Database,
-  Smartphone,
-  Music,
   MapPin,
+  Shield,
+  Clock,
   ShieldCheck,
   Rocket,
   Users,
-  Camera,
-  Headphones,
-  Gamepad2,
-  Tv,
-  Mic,
+  Settings,
+  FileText,
+  Globe,
+  Car,
+  PieChart,
+  Lock,
+  Cloud,
+  Truck,
+  Home,
+  ShoppingCart,
   Calendar,
+  CreditCard,
+  MessageSquare,
+  Navigation,
+  Bell,
 } from "lucide-react";
 
-const Entertainment = () => {
+const OnDemandIndustries = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -38,61 +47,69 @@ const Entertainment = () => {
 
   const solutions = [
     {
-      title: "Streaming Platforms",
+      title: "Ride-Sharing & Transportation",
       description:
-        "Custom streaming solutions with adaptive bitrate streaming, content delivery networks, user management, and advanced analytics for optimal viewing experiences",
-      icon: <Tv className="w-5 h-5" />,
+        "Complete ride-sharing platforms with driver-rider matching, real-time tracking, dynamic pricing, payment integration, and route optimization for seamless transportation experiences",
+      icon: <Car className="w-5 h-5" />,
       features: [
-        "Adaptive Streaming",
-        "Content Delivery",
-        "User Analytics",
+        "Driver-Rider Matching",
+        "Real-time GPS Tracking",
+        "Dynamic Pricing",
       ],
     },
     {
-      title: "Music & Audio Platforms",
+      title: "Food Delivery Services",
       description:
-        "Comprehensive music streaming platforms with playlist management, audio processing, recommendation engines, and social features for music discovery",
-      icon: <Headphones className="w-5 h-5" />,
+        "End-to-end food delivery solutions with restaurant partnerships, order management, delivery tracking, payment processing, and customer feedback systems",
+      icon: <Truck className="w-5 h-5" />,
       features: [
-        "Audio Processing",
-        "Playlist Management",
-        "Music Discovery",
+        "Restaurant Integration",
+        "Order Management",
+        "Delivery Tracking",
       ],
     },
     {
-      title: "Gaming Solutions",
+      title: "Home Services Platform",
       description:
-        "Interactive gaming platforms with real-time multiplayer, leaderboards, in-game purchases, and cross-platform compatibility for engaging experiences",
-      icon: <Gamepad2 className="w-5 h-5" />,
-      features: ["Multiplayer Gaming", "Leaderboards", "Cross-Platform"],
-    },
-    {
-      title: "Content Management Systems",
-      description:
-        "Advanced CMS for entertainment content with metadata management, digital rights management, content scheduling, and automated distribution",
-      icon: <Film className="w-5 h-5" />,
+        "Comprehensive home services marketplace connecting customers with verified professionals for cleaning, repairs, maintenance, and specialized services",
+      icon: <Home className="w-5 h-5" />,
       features: [
-        "Digital Rights",
-        "Content Scheduling",
-        "Automated Distribution",
+        "Professional Verification",
+        "Service Scheduling",
+        "Quality Assurance",
       ],
     },
     {
-      title: "Event & Ticketing Platforms",
+      title: "Grocery & Shopping Apps",
       description:
-        "Complete event management solutions with ticket sales, seating management, venue mapping, and real-time analytics for entertainment events",
+        "On-demand grocery and shopping platforms with inventory management, personal shopping services, scheduled deliveries, and loyalty programs",
+      icon: <ShoppingCart className="w-5 h-5" />,
+      features: [
+        "Inventory Management",
+        "Personal Shopping",
+        "Scheduled Delivery",
+      ],
+    },
+    {
+      title: "Healthcare On-Demand",
+      description:
+        "Telemedicine and healthcare delivery platforms with doctor consultations, prescription delivery, health monitoring, and emergency response services",
+      icon: <Shield className="w-5 h-5" />,
+      features: [
+        "Doctor Consultations",
+        "Prescription Delivery",
+        "Health Monitoring",
+      ],
+    },
+    {
+      title: "Beauty & Wellness Services",
+      description:
+        "On-demand beauty and wellness platforms with appointment booking, service provider matching, in-home treatments, and customer management",
       icon: <Calendar className="w-5 h-5" />,
-      features: ["Ticket Sales", "Venue Mapping", "Event Analytics"],
-    },
-    {
-      title: "Social Media & Community",
-      description:
-        "Interactive social platforms with live streaming, fan engagement tools, content sharing, and community building features for entertainment brands",
-      icon: <Users className="w-5 h-5" />,
       features: [
-        "Live Streaming",
-        "Fan Engagement",
-        "Community Building",
+        "Appointment Booking",
+        "Provider Matching",
+        "In-Home Services",
       ],
     },
   ];
@@ -100,104 +117,104 @@ const Entertainment = () => {
   const processSteps = [
     {
       step: "01",
-      title: "Entertainment Market Analysis",
+      title: "Market Research & Analysis",
       description:
-        "We analyze entertainment trends, audience behavior, and industry dynamics to create compelling digital experiences that resonate with target demographics",
+        "Analyze target market demographics, competitor landscape, demand patterns, and user behavior to design on-demand solutions that meet specific market needs",
       icon: <BarChart3 className="w-4 h-4" />,
     },
     {
       step: "02",
-      title: "Content Architecture Design",
+      title: "Multi-Platform Development",
       description:
-        "Build scalable content delivery systems with CDN integration, media processing pipelines, and real-time streaming capabilities",
-      icon: <Database className="w-4 h-4" />,
+        "Build native mobile apps for iOS and Android, web applications, and service provider dashboards with real-time synchronization and cross-platform compatibility",
+      icon: <Smartphone className="w-4 h-4" />,
     },
     {
       step: "03",
-      title: "Platform Development",
+      title: "Integration & Automation",
       description:
-        "Develop engaging platforms with interactive features, social integration, and personalized content recommendations using AI algorithms",
-      icon: <Monitor className="w-4 h-4" />,
+        "Integrate payment gateways, mapping services, notification systems, and third-party APIs while implementing automated workflows for seamless operations",
+      icon: <Settings className="w-4 h-4" />,
     },
     {
       step: "04",
-      title: "Performance Optimization",
+      title: "Real-Time Features",
       description:
-        "Comprehensive testing including load testing, streaming quality optimization, and cross-device compatibility validation",
-      icon: <CheckCircle className="w-4 h-4" />,
+        "Implement GPS tracking, live chat, push notifications, real-time updates, and dynamic pricing algorithms for enhanced user experience and operational efficiency",
+      icon: <Clock className="w-4 h-4" />,
     },
     {
       step: "05",
-      title: "Launch & Engagement",
+      title: "Launch & Scale",
       description:
-        "Strategic launch with audience engagement strategies, analytics monitoring, and continuous feature updates based on user feedback",
+        "Deploy with comprehensive testing, performance monitoring, user onboarding, marketing integration, and continuous optimization for rapid market penetration",
       icon: <Rocket className="w-4 h-4" />,
     },
   ];
 
   const techStack = [
-    { name: "React", category: "Frontend" },
+    { name: "React Native", category: "Mobile" },
     { name: "Node.js", category: "Backend" },
-    { name: "WebRTC", category: "Streaming" },
+    { name: "MongoDB", category: "Database" },
     { name: "AWS", category: "Cloud" },
-    { name: "FFmpeg", category: "Media" },
-    { name: "Redis", category: "Cache" },
     { name: "Socket.io", category: "Real-time" },
-    { name: "TensorFlow", category: "AI/ML" },
+    { name: "Stripe", category: "Payments" },
+    { name: "Google Maps", category: "Location" },
+    { name: "Firebase", category: "Push Notifications" },
   ];
 
   const testimonials = [
     {
-      name: "Alex Chen",
+      name: "Alex Martinez",
       role: "CEO",
-      company: "StreamVibe Entertainment",
+      company: "QuickRide Solutions",
       quote:
-        "TackleTools revolutionized our streaming platform. User engagement increased by 150% and streaming quality improved dramatically with their advanced CDN implementation.",
+        "TackleTools built our ride-sharing platform that now serves 50,000+ users daily with 95% customer satisfaction and reduced operational costs by 40%.",
       rating: 5,
     },
     {
-      name: "Maria Rodriguez",
+      name: "Jessica Chen",
+      role: "Founder",
+      company: "FreshDoor Delivery",
+      quote:
+        "The food delivery platform increased our order volume by 300% and improved delivery efficiency by 60% with intelligent route optimization.",
+      rating: 5,
+    },
+    {
+      name: "David Thompson",
       role: "CTO",
-      company: "MusicFlow Studios",
+      company: "HomeHelp Services",
       quote:
-        "The music recommendation engine increased playlist engagement by 200% and the social features created a thriving community of 500K+ active users.",
-      rating: 5,
-    },
-    {
-      name: "James Wilson",
-      role: "Product Director",
-      company: "GameHub Interactive",
-      quote:
-        "Their gaming platform supported 1M+ concurrent users flawlessly. The real-time multiplayer features and leaderboards drove incredible user retention.",
+        "Our home services marketplace processed 10,000+ bookings in the first month with seamless payment integration and real-time service tracking.",
       rating: 5,
     },
   ];
 
   const faqs = [
     {
-      question: "What entertainment solutions do you specialize in?",
+      question: "What on-demand services do you develop?",
       answer:
-        "We specialize in streaming platforms, music applications, gaming solutions, content management systems, event ticketing platforms, and social media tools for entertainment companies, content creators, and media organizations.",
+        "We develop comprehensive on-demand platforms including ride-sharing, food delivery, home services, grocery delivery, healthcare, beauty services, and custom on-demand solutions tailored to specific industry needs and market requirements.",
     },
     {
-      question: "How do you handle high-traffic streaming and content delivery?",
+      question: "How do you handle real-time tracking and notifications?",
       answer:
-        "We implement robust CDN solutions, adaptive bitrate streaming, load balancing, and edge computing to ensure smooth content delivery even during peak traffic periods. Our systems are designed to scale automatically based on demand.",
+        "We implement GPS tracking, WebSocket connections, and push notification systems using technologies like Socket.io, Firebase, and native mobile APIs to provide real-time updates, live tracking, and instant notifications across all platforms.",
     },
     {
-      question: "What's your typical development timeline for entertainment projects?",
+      question: "What payment solutions do you integrate?",
       answer:
-        "Entertainment projects typically range from 16-28 weeks depending on complexity and features required. We use agile methodology with regular demos and stakeholder feedback sessions throughout development.",
+        "We integrate multiple payment gateways including Stripe, PayPal, Square, and regional payment processors. Our solutions support credit cards, digital wallets, in-app payments, and cash-on-delivery options with secure transaction processing.",
     },
     {
-      question: "Can you integrate with existing entertainment industry tools?",
+      question: "How do you ensure service quality and safety?",
       answer:
-        "Yes, we have extensive experience integrating with industry-standard tools like digital rights management systems, content delivery networks, payment processors, and analytics platforms used in entertainment.",
+        "We implement comprehensive verification systems, rating and review mechanisms, background checks for service providers, real-time monitoring, customer support integration, and quality assurance protocols to maintain high service standards.",
     },
     {
-      question: "Do you provide mobile app development for entertainment platforms?",
+      question: "Can you scale the platform for high demand?",
       answer:
-        "We create native and cross-platform mobile apps with features like offline content, push notifications, social sharing, live streaming, and seamless synchronization across devices for entertainment platforms.",
+        "Yes, we build scalable architectures using cloud services, microservices, load balancing, and auto-scaling features. Our platforms can handle thousands of concurrent users and rapid growth with minimal downtime and optimal performance.",
     },
   ];
 
@@ -212,14 +229,15 @@ const Entertainment = () => {
                 Transform
                 <span className="text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">
                   {" "}
-                  Entertainment Technology
+                  On-Demand Services
                 </span>
               </h1>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                TackleTools powers the entertainment industry with cutting-edge
-                streaming platforms, interactive gaming solutions, and immersive
-                content management systems that captivate audiences and drive
-                engagement across all digital channels.
+                TackleTools revolutionizes on-demand industries with
+                cutting-edge platforms for ride-sharing, food delivery, home
+                services, and marketplace solutions that connect customers with
+                service providers through intuitive mobile apps, real-time
+                tracking, and seamless payment integration.
               </p>
               <div className="flex flex-col sm:flex-row lg:flex-row gap-3">
                 <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-sm">
@@ -234,14 +252,12 @@ const Entertainment = () => {
               <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-xl p-4 sm:p-6 border border-purple-500/30 backdrop-blur-sm">
                 <div className="aspect-video bg-gray-800/50 rounded-lg border border-gray-700 flex items-center justify-center">
                   <div className="text-center">
-                    <Film className="w-8 h-8 sm:w-12 sm:h-12 text-purple-400 mx-auto mb-2" />
-                    <p className="text-gray-400 text-sm">
-                      Streaming Platform
-                    </p>
+                    <Smartphone className="w-8 h-8 sm:w-12 sm:h-12 text-purple-400 mx-auto mb-2" />
+                    <p className="text-gray-400 text-sm">On-Demand App</p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Live Content
+                      Real-time Tracking
                       <br />
-                      Global Audience
+                      Instant Bookings
                     </p>
                   </div>
                 </div>
@@ -256,19 +272,21 @@ const Entertainment = () => {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              The Future of Entertainment Technology
+              The On-Demand Economy Revolution
             </h2>
             <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-              Entertainment technology is evolving rapidly with AI-powered content
-              recommendations, immersive streaming experiences, and interactive
-              social features that transform how audiences consume and engage with
-              content. Modern entertainment companies need scalable platforms that
-              deliver seamless experiences across all devices while providing
-              deep insights into audience behavior. TackleTools creates innovative
-              entertainment solutions that merge cutting-edge technology with
-              creative vision, enabling content creators and media companies to
-              captivate global audiences with personalized, engaging, and
-              technically superior digital experiences.
+              The on-demand economy is reshaping how consumers access services,
+              with mobile-first platforms enabling instant access to
+              transportation, food, healthcare, and professional services.
+              Modern consumers expect convenience, speed, and transparency in
+              service delivery. On-demand platforms leverage GPS technology,
+              real-time communication, and automated matching algorithms to
+              create seamless experiences that connect service providers with
+              customers instantly. TackleTools develops innovative on-demand
+              solutions that combine intuitive user interfaces with robust
+              backend systems, enabling businesses to capture market share in
+              the rapidly growing on-demand economy through technology-driven
+              service delivery and customer engagement.
             </p>
           </div>
         </div>
@@ -279,10 +297,10 @@ const Entertainment = () => {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold mb-2">
-              Our Entertainment Solutions
+              Our On-Demand Solutions
             </h2>
             <p className="text-sm sm:text-base text-gray-400">
-              Comprehensive digital solutions for modern entertainment experiences
+              Comprehensive platforms for every on-demand service industry
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -328,61 +346,61 @@ const Entertainment = () => {
               <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-start gap-3">
                   <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-full p-1.5 flex-shrink-0">
-                    <Music className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold mb-1">
-                      Entertainment Industry Expertise
+                      Real-Time Everything
                     </h3>
                     <p className="text-gray-400 text-sm">
-                      Deep understanding of entertainment workflows, content
-                      distribution, audience engagement, and monetization
-                      strategies across all entertainment verticals.
+                      Live tracking, instant notifications, real-time chat, and
+                      dynamic updates that keep users engaged and informed
+                      throughout their service experience.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-full p-1.5 flex-shrink-0">
-                    <Camera className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <Navigation className="w-3 h-3 sm:w-4 sm:h-4" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold mb-1">
-                      Advanced Media Processing
+                      Smart Matching & Routing
                     </h3>
                     <p className="text-gray-400 text-sm">
-                      State-of-the-art media processing pipelines with
-                      transcoding, compression, and adaptive streaming
-                      technologies for optimal content delivery.
+                      AI-powered algorithms for optimal service provider
+                      matching, intelligent routing, and dynamic pricing based
+                      on demand patterns and availability.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-full p-1.5 flex-shrink-0">
-                    <Brain className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <CreditCard className="w-3 h-3 sm:w-4 sm:h-4" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold mb-1">
-                      AI-Powered Personalization
+                      Seamless Payment Integration
                     </h3>
                     <p className="text-gray-400 text-sm">
-                      Machine learning algorithms for content recommendations,
-                      audience segmentation, predictive analytics, and
-                      personalized entertainment experiences.
+                      Multiple payment options including digital wallets, cards,
+                      and cash-on-delivery with secure processing and automated
+                      payouts to service providers.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-full p-1.5 flex-shrink-0">
-                    <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold mb-1">
-                      Scalable Architecture
+                      Trust & Safety Features
                     </h3>
                     <p className="text-gray-400 text-sm">
-                      Cloud-native solutions that scale automatically to handle
-                      millions of concurrent users, viral content, and global
-                      entertainment events.
+                      Comprehensive verification systems, rating mechanisms,
+                      background checks, and safety protocols to ensure secure
+                      and reliable service delivery.
                     </p>
                   </div>
                 </div>
@@ -392,10 +410,10 @@ const Entertainment = () => {
               <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 rounded-xl p-4 sm:p-6 border border-purple-500/30">
                 <div className="aspect-square bg-gray-800/50 rounded-lg border border-gray-700 flex items-center justify-center">
                   <div className="text-center">
-                    <Mic className="w-8 h-8 sm:w-12 sm:h-12 text-purple-400 mx-auto mb-2" />
-                    <p className="text-gray-400 text-sm">Live Streaming</p>
+                    <MapPin className="w-8 h-8 sm:w-12 sm:h-12 text-purple-400 mx-auto mb-2" />
+                    <p className="text-gray-400 text-sm">Live Tracking</p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Interactive Features
+                      Real-time Location
                     </p>
                   </div>
                 </div>
@@ -413,7 +431,7 @@ const Entertainment = () => {
               Our Development Process
             </h2>
             <p className="text-sm sm:text-base text-gray-400">
-              A proven methodology for entertainment technology transformation
+              From concept to launch: building successful on-demand platforms
             </p>
           </div>
           <div className="space-y-4 sm:space-y-6">
@@ -454,42 +472,42 @@ const Entertainment = () => {
                   Case Study
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold mb-4">
-                  StreamVibe: Next-Gen Entertainment Platform
+                  QuickRide: Urban Mobility Revolution
                 </h2>
                 <p className="text-gray-300 mb-4 text-sm">
-                  We developed a comprehensive entertainment streaming platform
-                  for StreamVibe that revolutionized content discovery with
-                  AI-powered recommendations, social features, and immersive
-                  viewing experiences.
+                  We developed a comprehensive ride-sharing platform for
+                  QuickRide that transformed urban transportation with
+                  intelligent matching, real-time tracking, and seamless payment
+                  processing across multiple cities.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div>
                     <div className="text-2xl font-bold text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text mb-1">
-                      150%
+                      50K+
                     </div>
                     <div className="text-gray-400 text-xs">
-                      User Engagement
+                      Daily Active Users
                     </div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text mb-1">
-                      2M+
+                      95%
                     </div>
                     <div className="text-gray-400 text-xs">
-                      Active Users
+                      Customer Satisfaction
                     </div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text mb-1">
-                      99.9%
+                      3 Min
                     </div>
-                    <div className="text-gray-400 text-xs">Uptime</div>
+                    <div className="text-gray-400 text-xs">Avg Wait Time</div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text mb-1">
-                      300%
+                      40%
                     </div>
-                    <div className="text-gray-400 text-xs">Revenue Growth</div>
+                    <div className="text-gray-400 text-xs">Cost Reduction</div>
                   </div>
                 </div>
                 <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg font-semibold transition-all text-sm">
@@ -500,12 +518,12 @@ const Entertainment = () => {
                 <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-xl p-4 sm:p-6 border border-purple-500/30">
                   <div className="aspect-video bg-gray-800/50 rounded-lg border border-gray-700 flex items-center justify-center">
                     <div className="text-center">
-                      <Monitor className="w-8 h-8 sm:w-12 sm:h-12 text-purple-400 mx-auto mb-2" />
-                      <p className="text-gray-400 text-sm">Streaming Dashboard</p>
+                      <Car className="w-8 h-8 sm:w-12 sm:h-12 text-purple-400 mx-auto mb-2" />
+                      <p className="text-gray-400 text-sm">Ride Tracking</p>
                       <p className="text-xs text-gray-500 mt-1">
-                        Content Analytics
+                        Live Location
                         <br />
-                        Audience Insights
+                        ETA Updates
                       </p>
                     </div>
                   </div>
@@ -524,7 +542,7 @@ const Entertainment = () => {
               Technology Stack
             </h2>
             <p className="text-sm sm:text-base text-gray-400">
-              Modern technologies powering entertainment innovation
+              Cutting-edge technologies powering on-demand platforms
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -552,7 +570,7 @@ const Entertainment = () => {
               What Our Clients Say
             </h2>
             <p className="text-sm sm:text-base text-gray-400">
-              Real results from entertainment industry leaders worldwide
+              Success stories from on-demand service entrepreneurs
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -605,7 +623,7 @@ const Entertainment = () => {
               Frequently Asked Questions
             </h2>
             <p className="text-sm sm:text-base text-gray-400">
-              Common questions about our entertainment technology solutions
+              Common questions about on-demand platform development
             </p>
           </div>
           <div className="max-w-3xl mx-auto space-y-3">
@@ -641,4 +659,4 @@ const Entertainment = () => {
   );
 };
 
-export default Entertainment;
+export default OnDemandIndustries;

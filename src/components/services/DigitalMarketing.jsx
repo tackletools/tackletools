@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { HelmetTags } from '../../utils/HelmetMetaTags.jsx';
 
 const DigitalMarketing = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -71,11 +72,13 @@ const DigitalMarketing = () => {
   }, []);
 
   return (
-    <section 
-      ref={heroRef}
-      className="relative min-h-screen bg-black overflow-hidden"
-    >
-      {/* Animated Background Elements */}
+    <>
+      {HelmetTags.DigitalMarketing}
+      <section
+        ref={heroRef}
+        className="relative min-h-screen bg-black overflow-hidden"
+      >
+        {/* Animated Background Elements */}
       <div className="absolute inset-0">
         {/* Dynamic Gradient Orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/20 to-blue-600/20 rounded-full filter blur-3xl animate-pulse"></div>
@@ -352,6 +355,7 @@ const DigitalMarketing = () => {
         }
       `}</style>
     </section>
+  </>
   );
 };
 

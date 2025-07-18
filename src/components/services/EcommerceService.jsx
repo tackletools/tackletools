@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
+import { HelmetTags } from '../../utils/HelmetMetaTags.jsx';
 
-const Ecommerce = () => {
+const EcommerceService = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
   const heroRef = useRef(null);
@@ -28,6 +29,8 @@ const Ecommerce = () => {
   }, []);
 
   return (
+    <>
+      {HelmetTags.EcommerceService}
     <section 
       ref={heroRef}
       className="relative h-screen bg-black overflow-hidden"
@@ -264,7 +267,8 @@ const Ecommerce = () => {
         }
       `}</style>
     </section>
+    </>
   );
 };
 
-export default Ecommerce;
+export default EcommerceService;

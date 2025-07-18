@@ -12,7 +12,7 @@ import {
   MessageCircle
 } from "lucide-react";
 import Amit from "../assets/Amit.jpg";
-import Pawan from "../assets/pss.jpg";
+import Pawan from "../assets/pawan.jpg";
 import Komal from "../assets/komal.jpg";
 import Nikita from "../assets/Nikita.jpg";
 

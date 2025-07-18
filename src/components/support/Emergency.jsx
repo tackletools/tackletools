@@ -16,6 +16,7 @@ import {
   CheckCircle,
   AlertCircle
 } from 'lucide-react';
+import { HelmetTags } from '../../utils/HelmetMetaTags'
 
 const Emergency = () => {
   const mountRef = useRef(null);
@@ -142,6 +143,9 @@ const Emergency = () => {
   ];
 
   return (
+    <>
+    {HelmetTags.Emergency}
+    
     <div className="min-h-screen bg-black text-gray-300 relative overflow-hidden">
       {/* Three.js Background */}
       <div ref={mountRef} className="fixed inset-0 -z-10" />
@@ -338,6 +342,7 @@ const Emergency = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 

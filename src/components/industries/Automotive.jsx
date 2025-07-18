@@ -18,6 +18,7 @@ import {
   Shield,
   Clock,
 } from "lucide-react";
+import { HelmetTags } from "../../utils/HelmetMetaTags";
 
 const Automotive = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -183,6 +184,9 @@ const Automotive = () => {
   ];
 
   return (
+    <>
+    {HelmetTags.Automotive}
+    
     <div className="bg-black text-white min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-black via-purple-900 to-orange-900 pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-16 lg:pb-16 overflow-hidden">
@@ -210,7 +214,7 @@ const Automotive = () => {
                 </button>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative pt-6">
               <div className="bg-gradient-to-br from-purple-900/20 to-orange-900/20 rounded-xl p-4 sm:p-6 border border-purple-500/30 backdrop-blur-sm">
                 <div className="aspect-video bg-gray-800/50 rounded-lg border border-gray-700 flex items-center justify-center">
                   <div className="text-center">
@@ -599,7 +603,7 @@ const Automotive = () => {
                   )}
                 </button>
                 {openFAQ === index && (
-                  <div className="px-4 sm:px-5 pb-4 sm:pb-5">
+                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 py-2">
                     <p className="text-gray-400 text-sm">{faq.answer}</p>
                   </div>
                 )}
@@ -609,6 +613,7 @@ const Automotive = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

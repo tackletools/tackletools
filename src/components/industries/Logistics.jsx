@@ -214,7 +214,7 @@ const Logistics = () => {
                 </button>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative py-6">
               <div className="bg-gradient-to-br from-blue-900/20 to-green-900/20 rounded-xl p-4 sm:p-6 border border-blue-500/30 backdrop-blur-sm">
                 <div className="aspect-video bg-gray-800/50 rounded-lg border border-gray-700 flex items-center justify-center">
                   <div className="text-center">
@@ -607,7 +607,7 @@ const Logistics = () => {
                   )}
                 </button>
                 {openFAQ === index && (
-                  <div className="px-4 sm:px-5 pb-4 sm:pb-5">
+                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 py-2">
                     <p className="text-gray-400 text-sm">{faq.answer}</p>
                   </div>
                 )}

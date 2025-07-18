@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { HelmetTags } from '../../utils/HelmetMetaTags.jsx';
 
 const Multimedia = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -87,6 +88,9 @@ const Multimedia = () => {
   };
 
   return (
+    <>
+    {HelmetTags.Multimedia}
+
     <section 
       ref={heroRef}
       className="relative min-h-screen bg-black overflow-hidden"
@@ -450,6 +454,7 @@ const Multimedia = () => {
         }
       `}</style>
     </section>
+    </>
   );
 };
 
